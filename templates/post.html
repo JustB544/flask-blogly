@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block body%}
+
+<h1>{{post.title}}</h1>
+<p>{{post.content}}</p>
+<h3><i>By {{user.first_name}} {{user.last_name}}</i></h3>
+<div class="horizontal_div">
+    <form action="/users/{{user.id}}">
+        <button class="lightblue_but">Cancel</button>
+    </form>
+    <form action="/posts/{{post_id}}/edit">
+        <button class="blue_but">Edit</button>
+    </form>
+    <form action="/posts/{{post_id}}/delete" method="post">
+        <button class="red_but">Delete</button>
+    </form>
+</div>
+{% endblock %}
