@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block body%}
+
+<div class="horizontal_div">
+    <img src="{{src}}" />
+    <div>
+        <h1>{{first}} {{last}}</h1>
+        <div class="horizontal_div">
+            <form action="/users/{{id}}/edit">
+                <button class="blue_but">Edit</button>
+            </form>
+            <form action="/users/{{id}}/delete" method="post">
+                <button class="red_but">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

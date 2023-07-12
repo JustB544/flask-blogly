@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block body%}
+
+<h1>Edit a user</h1>
+<form action="/users/{{id}}/edit" method="post">
+    <div>
+        <h3>First Name</h3>
+        <input type="text" placeholder="Enter a first name" value="{{first}}" name="first" />
+    </div>
+    <div>
+        <h3>Last Name</h3>
+        <input type="text" placeholder="Enter a last name" value="{{last}}" name="last" />
+    </div>
+    <div>
+        <h3>Image URL</h3>
+        <input type="url" placeholder="Provide an image of this user" value="{{src}}" name="src" />
+    </div>
+    <div class="horizontal_div">
+        <form action="/users">
+            <button class="lightblue_but">Cancel</button>
+        </form>
+        <button class="green_but">Save</button>
+    </div>
+</form>
+
+{% endblock %}
