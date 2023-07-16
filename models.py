@@ -36,5 +36,30 @@ class Post(db.Model):
                      nullable=False)
     content = db.Column(db.String(500),
                      nullable=False)
-    created_at = db.Column(db.String(), nullable=False, default=datetime.now())
+    created_at = db.Column(db.String(), nullable=False, default=datetime.now().strftime('%a %b %d %Y, %I:%M %p'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete="CASCADE"), nullable=False)
+
+    tags = db.relationship('Tag', secondary='post_tag', backref='posts')
+    
+class Tag(db.Model):
+    """Blogly tag"""
+
+    __tablename__ = "tag"
+
+    id = db.Column(db.Integer,
+                   primary_key=True,
+                   autoincrement=True)
+    name = db.Column(db.String(100),
+                     nullable=False)
+
+class Post_tag(db.Model):
+    """Tags relating to posts"""
+
+    __tablename__ = "post_tag"
+
+    post_id = db.Column(db.Integer,
+                   db.ForeignKey('post.id', ondelete="CASCADE"),
+                   primary_key=True)
+    tag_id = db.Column(db.Integer,
+                   db.ForeignKey('tag.id', ondelete="CASCADE"),
+                   primary_key=True)

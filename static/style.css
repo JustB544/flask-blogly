@@ -2,6 +2,20 @@
     display: flex;
 }
 
+.tag {
+    background-color: blue;
+    color: white;
+    padding: 2px;
+    border-radius: 2px;
+}
+
+.tag:hover {
+    background-color: blue;
+    color: white;
+    padding: 1px;
+    border-radius: 2px;
+}
+
 * {
     margin: 4px;
 }

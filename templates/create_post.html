@@ -12,6 +12,14 @@
         <label for="content">Content</label>
         <input id="content" type="text" name="content" />
     </div>
+    <div>
+        {% for tag in tags %}
+        <div class="horizontal_div">
+            <input type="checkbox" name="{{tag.id}}" />
+            <p>{{tag.name}}</p>
+        </div>
+        {% endfor %}
+    </div>
     <div class="horizontal_div">
         <form action="/users/{{id}}">
             <button class="lightblue_but">Cancel</button>

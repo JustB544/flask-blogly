@@ -2,7 +2,7 @@ from unittest import TestCase
 from app import app
 from flask import session
 from seed import seed
-from models import User, Post
+from models import User, Post, Tag, Post_tag
 
 class FlaskTests(TestCase):
     """tests"""
@@ -55,5 +55,22 @@ class FlaskTests(TestCase):
             resp = client.get("/users/1")
             html = resp.get_data(as_text=True)
             self.assertNotIn("generic name", html)
+    def test_tags_route(self):
+        with app.test_client() as client:
+            resp = client.get('/tags')
+            html = resp.get_data(as_text=True)
+
+            self.assertEqual(resp.status_code, 200)
+            self.assertIn('relatable', html)
+    def test_new_tag_route(self):
+        with app.test_client() as client:
+            resp = client.post('/tags/new', data={'tag': 'i\'m a tag'})
+
+            self.assertEqual(resp.status_code, 302)
+
+            tag = Tag.query.get(7)
+            self.assertEqual(tag.name, 'i\'m a tag')
+    
+    
 
         

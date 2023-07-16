@@ -4,7 +4,17 @@
 
 <h1>{{post.title}}</h1>
 <p>{{post.content}}</p>
-<h3><i>By {{user.first_name}} {{user.last_name}}</i></h3>
+<h3><i>By {{user.first_name}} {{user.last_name}} on {{post.created_at}}</i></h3>
+<div class="horizontal_div">
+    {% if tags != [] %}
+    <h3>Tags:</h3>
+    {% endif %}
+    {% for tag in tags %}
+    <form action="/tags/{{tag.id}}">
+        <button class="tag">{{tag.name}}</button>
+    </form>
+    {% endfor %}
+</div>
 <div class="horizontal_div">
     <form action="/users/{{user.id}}">
         <button class="lightblue_but">Cancel</button>
